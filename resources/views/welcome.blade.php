@@ -221,7 +221,7 @@
 </svg>
 
 <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Company name</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Sua empresa aqui</a>
 
   <ul class="navbar-nav flex-row d-md-none">
     <li class="nav-item text-nowrap">
@@ -328,13 +328,13 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
-                Settings
+                Configurações
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>
-                Sign out
+                Sair
               </a>
             </li>
           </ul>
@@ -347,12 +347,12 @@
         <h1 class="h2">Painel Msflix</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Salvar</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
             <svg class="bi"><use xlink:href="#calendar3"/></svg>
-            This week
+            Esta semana
           </button>
         </div>
       </div>
@@ -364,20 +364,20 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
+              <th scope="col">id</th>
+              <th scope="col">Nome</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Função</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
+              <td>001</td>
+              <td>Everton L G Souza</td>
+              <td>everton.sengenharia@gmail.com</td>
+              <td>(43) 9.9989-2720</td>
+              <td>Engenheiro Residente</td>
             </tr>
             <tr>
               <td>1,002</td>
@@ -389,7 +389,7 @@
             <tr>
               <td>1,003</td>
               <td>data</td>
-              <td>rich</td>
+              <td>Everton L G Souza</td>
               <td>dashboard</td>
               <td>tabular</td>
             </tr>
