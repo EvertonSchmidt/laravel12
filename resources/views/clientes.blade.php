@@ -7,7 +7,7 @@
     <title>Hello World</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <h1 style="color:beige; background-color: #ccc; font-family: sans-serif, arial; font-size:38px; padding: 18px">Hello World!</h1>
     <p>Everton Luiz Gonçalves de Souza</p>
     <p>Gabrielly Bento</p>
     <p>Isabela Bento Souza</p>
