@@ -8,6 +8,7 @@ class MsController
     {
         return view('clientes');
     }
+
 }
 
 

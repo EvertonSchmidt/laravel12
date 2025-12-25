@@ -11,3 +11,4 @@ Route::get('/', function () {
 Route::resource('redes-sociais', RedeSocialController::class);
 
 Route::get('/clientes', [MsController::class, 'clientes']);
+
