@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email'); //string
             $table->string('telefone'); //string
             $table->string('permissao'); //string
-            $table->date('nascimento'); //date 1989-22-05
+            // $table->date('nascimento'); //date 1989-22-05
             // $table->datetime('data'); //datetime 1989-22-05 17:05:07
             // $table->float('valor'); //float 25.50
             // $table->double('preco'); //double 25.50
