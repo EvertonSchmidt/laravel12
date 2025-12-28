@@ -11,6 +11,7 @@ class ClienteRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        //por padão veio como false, devo trocar para true
         return true;
     }
 
@@ -19,12 +20,13 @@ class ClienteRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    //Aqui eu falo os campos que são obrigatórios
     public function rules(): array
     {
         return [
             'nome' => 'required',
             'cpf' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:clientes|email',
             'fone' => 'required',
             'nascimento' => 'required',
         ];
@@ -35,6 +37,7 @@ class ClienteRequest extends FormRequest
             'nome.required' => 'O nome é obrigatório',
             'cpf.required' => 'O CPF é obrigatório',
             'email.required' => 'O email é obrigatório',
+            'email.unique' => 'O email <strong>:input</strong> informado já está cadastrado',
             'fone.required' => 'O telefone é obrigatório',
             'nascimento.required' => 'A data de nascimento é um campo obrigatório',
         ];

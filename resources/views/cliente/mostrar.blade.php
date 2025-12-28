@@ -11,12 +11,13 @@
     <div class="col-md-12">
         <div class="container">
             <h1>Resultado do Formulário</h1>
+
             @if(session('sucesso'))
             <div class="alert alert-success">
-                {{ session('sucesso') }}
+                {!! session('sucesso') !!}
             </div>
-
             @endif
+
             <a href="{{ route('cliente.index') }}" class="btn btn-primary">Voltar</a>
         </div>
     </div>

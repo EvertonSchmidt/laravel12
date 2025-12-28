@@ -66,13 +66,22 @@
 
       <h2>Cadastro de clientes</h2>
       <p class="lead">O único canal que te ensina criar projetos do inicio ao fim.</p>
-      <p class="lead"> <a href="{{ route('cliente.index') }}">Voltar para o painel</a></p>
+      <div style="
+        display:flex;
+        justify-content:center;
+        padding:5px;
+        gap: 55px;
+      ">
+        <p class="lead"> <a href="{{ route('cliente.index') }}"style="text-decoration: none">Voltar para a listagem</a></p>
+        <p class="lead"> <a href="{{ route('voltar.index') }}" style="text-decoration: none">Voltar para a página principal</a></p>
+      </div>
+
     </div>
 
     @if($errors->any())
     <div class="alert alert-danger">
         @foreach($errors->all() as $error)
-            {{ $error }}<br>
+            {!! $error !!}<br>
         @endforeach
     </div>
     @endif
@@ -81,7 +90,7 @@
 
       <div class="col-md-12 col-lg-12">
 
-        <form class="needs-validation" action="{{ route('cliente.store') }}" method="post">
+        <form class="needs-validation" action="{{ route('cliente.store') }}" method="POST">
             @csrf
           <div class="row g-3">
             <div class="col-sm-6">
