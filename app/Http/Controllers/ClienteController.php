@@ -11,8 +11,13 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        return view('cliente/index');
+        //buscar informações do nosso banco de dados/bd
+        $cliente = Cliente::orderByDesc('created_at')->get();
+        //Retorna nossa view, ou seja, nosso layout
+        return view('cliente/index', ['cliente' => $cliente]);
     }
+
+
 
     public function voltar()
     {
@@ -35,7 +40,6 @@ class ClienteController extends Controller
     {
         $email = $request->input('email');
 
-
         //validar camos (professor)
         $request->validated();
 
@@ -44,7 +48,6 @@ class ClienteController extends Controller
 
         //redirecionamento
         return redirect()->route('cliente.mostrar')->with('sucesso','Cadastro de <strong>'. $email .'</strong> efetuado com sucesso!');
-
         //validar os campos (chatgpt)
         // $validated = $request->validate([
         //     'nome' => 'required|string|max:255',
@@ -60,5 +63,17 @@ class ClienteController extends Controller
 
         //redirecionamento
         // return redirect()->route('cliente.mostrar')->with('sucesso', 'Cliente cadastrado com sucesso!');
+    }
+
+    //visualizar os dados a partir do ID do cliente
+    public function editar(Cliente $cliente)
+    {
+        return view('cliente/editar', ['cliente' => $cliente]);
+    }
+
+    //alterar os dados do cliente a partir do nosso ID
+    public function update()
+    {
+        dd('atualizar');
     }
 }

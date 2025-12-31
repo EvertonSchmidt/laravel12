@@ -64,7 +64,7 @@
   <main>
     <div class="py-5 text-center">
 
-      <h2>Cadastro de clientes</h2>
+      <h2>Atualizar dados do Usuário</h2>
       <p class="lead">O único canal que te ensina criar projetos do inicio ao fim.</p>
       <div style="
         display:flex;
@@ -91,12 +91,13 @@
 
       <div class="col-md-12 col-lg-12">
 
-        <form class="needs-validation" action="{{ route('cliente.store') }}" method="POST">
+        <form class="needs-validation" action="{{ route('cliente.update') }}" method="POST">
             @csrf
+            @method('PUT')
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="nome" class="form-label">Nome Completo</label>
-              <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu Nome Completo" value="{{ old('nome') }}">
+              <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu Nome Completo" value="{{ old('nome', $cliente->nome) }}">
               <div class="invalid-feedback">
                 Nome obrigatório
               </div>
@@ -104,7 +105,7 @@
 
             <div class="col-sm-6">
               <label for="cpf" class="form-label">CPF</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF" value="{{ old('cpf') }}">
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF" value="{{ old('cpf', $cliente->cpf) }}">
               <div class="invalid-feedback">
                 CPF obrigatório
               </div>
@@ -114,7 +115,7 @@
               <label for="email" class="form-label">E-mail</label>
               <div class="input-group has-validation">
                 <span class="input-group-text">@</span>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Seu E-mail" value="{{ old('email') }}">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Seu E-mail" value="{{ old('email', $cliente->email) }}">
               <div class="invalid-feedback">
               E-mail obrigatório
                 </div>
@@ -123,7 +124,7 @@
 
             <div class="col-12">
               <label for="fone" class="form-label">Telefone</span></label>
-              <input type="text" class="form-control" id="fone"  name="fone" placeholder="Celular (41) 7777-7777" value="{{ old('fone') }}">
+              <input type="text" class="form-control" id="fone"  name="fone" placeholder="Celular (41) 7777-7777" value="{{ old('fone',$cliente->fone) }}">
               <div class="invalid-feedback">
               Telefone obrigatório
               </div>
@@ -131,7 +132,7 @@
 
             <div class="col-12">
               <label for="nascimento" class="form-label">Nascimento</label>
-              <input type="date" class="form-control" id="nascimento" name="nascimento" placeholder="Data de nascimento" value="{{ old('nascimento') }}">
+              <input type="date" class="form-control" id="nascimento" name="nascimento" placeholder="Data de nascimento" value="{{ old('nascimento', $cliente->nascimento) }}">
               <div class="invalid-feedback">
               Data de nacimento obrigatório
               </div>

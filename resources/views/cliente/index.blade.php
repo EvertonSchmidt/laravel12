@@ -16,6 +16,8 @@
     />
     <script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
     <meta name="theme-color" content="#712cf9" />
     {{-- <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" /> --}}
     @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
@@ -373,7 +375,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
 </svg>
-                    Clientes
+                    Usuários
                   </a>
                 </li>
                 <li class="nav-item">
@@ -381,7 +383,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
 </svg>
-                    Cadastrar Clientes
+                    Cadastrar Usuários
                   </a>
                 </li>
                 <li class="nav-item">
@@ -489,7 +491,7 @@
         </div>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Painel de Clientes</h1>
+        <h1 class="h2">Cadastro de Usuários</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Importar</button>
@@ -501,10 +503,9 @@
           </button>
         </div>
       </div>
-
-
-
-      <h2>Lista de Clientes</h2>
+      <div style="display: flex; justify-content:flex-end; margin:0 5px 0 0; padding:15px 0;">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">Novo Usuário</button>
+      </div>
       <div class="table-responsive small">
         <table class="table table-striped table-sm">
           <thead>
@@ -519,34 +520,23 @@
             </tr>
           </thead>
           <tbody>
+            @forelse($cliente as $usuario)
             <tr>
-              <td>7</td>
-              <td>Maykon Silveira</td>
-              <td>7777</td>
-              <td>(41)7777-7777</td>
-              <td>cursos@maykonsilveria.com.br</td>
-              <td><a href="" class="btn btn-primary">Editar</a></td>
+              <td>{{ $usuario->id }}</td>
+              <td>{{ $usuario->nome }}</td>
+              <td>{{ $usuario->cpf }}</td>
+              <td>{{ $usuario->fone }}</td>
+              <td>{{ $usuario->email }}</td>
+              <td><a href="{{ route('cliente.editar',['cliente' => $usuario->id]) }}" class="btn btn-primary">Editar</a></td>
               <td><a href="" class="btn btn-danger">Excluir</a></td>
             </tr>
+            @empty
             <tr>
-              <td>7</td>
-              <td>Maykon Silveira</td>
-              <td>7777</td>
-              <td>(41)7777-7777</td>
-              <td>cursos@maykonsilveria.com.br</td>
-              <td><a href="" class="btn btn-primary">Editar</a></td>
-              <td><a href="" class="btn btn-danger">Excluir</a></td>
+                <td>
+                    Nada foi cadastrado
+                </td>
             </tr>
-            <tr>
-              <td>7</td>
-              <td>Maykon Silveira</td>
-              <td>7777</td>
-              <td>(41)7777-7777</td>
-              <td>cursos@maykonsilveria.com.br</td>
-              <td><a href="" class="btn btn-primary">Editar</a></td>
-              <td><a href="" class="btn btn-danger">Excluir</a></td>
-            </tr>
-
+            @endforelse
           </tbody>
         </table>
       </div>
@@ -556,5 +546,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" class="astro-vvvwv3sm"></script>
     {{-- <script src="{{ asset('js/dashboard.js') }}" class="astro-vvvwv3sm"></script> --}}
+    <!-- JS do Bootstrap + Popper -->
+
+
+
+    @include('partials.modal-login')
   </body>
 </html>

@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 
 // Rota index do cliente
 Route::get('/lista-de-clientes', [ClienteController::class, 'index'])->name('cliente.index');
-Route::get('/', [ClienteController::class, 'voltar'])->name('voltar.index');
-Route::get('/produto', [ProdutoController::class, 'produto'])->name('produto.index');
 
+Route::get('/', [ClienteController::class, 'voltar'])->name('voltar.index');
+
+Route::get('/produto', [ProdutoController::class, 'produto'])->name('produto.index');
 
 Route::get('/cadastro-de-clientes', [ClienteController::class, 'criar'])->name('criar.cliente');
 
@@ -24,3 +25,9 @@ Route::get('/mostrar-clientes', [ClienteController::class, 'mostrar'])->name('cl
 
 //Rota para salvar no banco de dados
 Route::post('/store-cliente', [ClienteController::class, 'store'])->name('cliente.store');
+
+//Rota para editar (O métido é get)
+Route::get('/editar-cliente/{cliente}', [ClienteController::class, 'editar'])->name('cliente.editar');
+
+//Rota para atualizar (O método é put)
+Route::put('/update-cliente/{cliente}', [ClienteController::class, 'update'])->name('cliente.update');
