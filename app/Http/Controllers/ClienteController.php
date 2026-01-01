@@ -38,6 +38,7 @@ class ClienteController extends Controller
     //Salvar no banco de dados
     public function store(ClienteRequest $request)
     {
+
         $email = $request->input('email');
 
         //validar camos (professor)
@@ -72,8 +73,9 @@ class ClienteController extends Controller
     }
 
     //alterar os dados do cliente a partir do nosso ID
-    public function update()
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        dd('atualizar');
+        $request->validated();
+
     }
 }

@@ -26,7 +26,7 @@ Route::get('/mostrar-clientes', [ClienteController::class, 'mostrar'])->name('cl
 //Rota para salvar no banco de dados
 Route::post('/store-cliente', [ClienteController::class, 'store'])->name('cliente.store');
 
-//Rota para editar (O métido é get)
+//Visualizar dados de acordo com o ID. {clientre}: serve para editar a partir desse cliente
 Route::get('/editar-cliente/{cliente}', [ClienteController::class, 'editar'])->name('cliente.editar');
 
 //Rota para atualizar (O método é put)

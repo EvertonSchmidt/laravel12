@@ -94,6 +94,7 @@
         <form class="needs-validation" action="{{ route('cliente.update') }}" method="POST">
             @csrf
             @method('PUT')
+            
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="nome" class="form-label">Nome Completo</label>
@@ -137,9 +138,23 @@
               Data de nacimento obrigatório
               </div>
             </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Gerente</label>
+            </div>
           </div>
 
-
+<style>
+    #flexSwitchCheckChecked{
+        height: 28px;
+        width: 60px;
+        /* margin:0 15px 0 0; */
+        margin: 20px 15px 0 -30px;
+    }
+    .form-check-label{
+        margin: 20px 0;
+    }
+</style>
 
           <hr class="my-4">
 
