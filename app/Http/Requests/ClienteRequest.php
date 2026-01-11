@@ -26,7 +26,7 @@ class ClienteRequest extends FormRequest
         return [
             'nome' => 'required',
             'cpf' => 'required',
-            'email' => 'required|email|unique:clientes|email',
+            'email' => 'required',
             'fone' => 'required',
             'nascimento' => 'required',
         ];
@@ -37,7 +37,6 @@ class ClienteRequest extends FormRequest
             'nome.required' => 'O nome é obrigatório',
             'cpf.required' => 'O CPF é obrigatório',
             'email.required' => 'O email é obrigatório',
-            'email.unique' => 'O email <strong>:input</strong> informado já está cadastrado',
             'fone.required' => 'O telefone é obrigatório',
             'nascimento.required' => 'A data de nascimento é um campo obrigatório',
         ];

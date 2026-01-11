@@ -378,6 +378,7 @@
                     Usuários
                   </a>
                 </li>
+
                 <li class="nav-item">
                   <a class="nav-link d-flex align-items-center gap-2" href="{{ route('criar.cliente') }}">
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -503,18 +504,38 @@
           </button>
         </div>
       </div>
+
+
+    @if(session('sucesso'))
+        <div class="alert alert-success" id="success-message">
+            {{ session('sucesso') }}
+        </div>
+    @endif
+
+    <script>
+        setTimeout(function(){
+            const message = document.getElementById('success-message');
+            if(message) {
+                message.style.display = 'none';
+            }
+        }, 2000); //5000 ms = 5 segundos
+    </script>
+
+
       <div style="display: flex; justify-content:flex-end; margin:0 5px 0 0; padding:15px 0;">
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">Novo Usuário</button>
       </div>
       <div class="table-responsive small">
-        <table class="table table-striped table-sm">
+        <table class="table table-hover" style="vertical-align: middle;">
           <thead>
             <tr>
-              <th scope="col">ID</th>
+              {{-- <th scope="col">ID</th> --}}
               <th scope="col">Nome</th>
               <th scope="col">CPF</th>
               <th scope="col">Telefone</th>
               <th scope="col">E-mail</th>
+              <th scope="col">Permissão</th>
+              <th scope="col">Saldo</th>
               <th scope="col">Editar</th>
               <th scope="col">Excluir</th>
             </tr>
@@ -522,13 +543,37 @@
           <tbody>
             @forelse($cliente as $usuario)
             <tr>
-              <td>{{ $usuario->id }}</td>
+              {{-- <td>{{ $usuario->id }}</td> --}}
               <td>{{ $usuario->nome }}</td>
               <td>{{ $usuario->cpf }}</td>
               <td>{{ $usuario->fone }}</td>
               <td>{{ $usuario->email }}</td>
+              <td>{{ $usuario->permissao }}</td>
+              <td>R$ {{ number_format($usuario->saldo, "2", ",", ".") }}</td>
+
               <td><a href="{{ route('cliente.editar',['cliente' => $usuario->id]) }}" class="btn btn-primary">Editar</a></td>
-              <td><a href="" class="btn btn-danger">Excluir</a></td>
+                  <td>
+                    <form action="{{ route('cliente.destroy', $usuario->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger">
+                            Excluir
+                        </button>
+                    </form>
+    </td>
+<script>
+var deleteModal = document.getElementById('deleteModal');
+
+deleteModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget; // botão que abriu a modal
+    var id = button.getAttribute('data-id'); // pega o id do usuário
+
+    // atualiza a action do formulário
+    var form = document.getElementById('deleteForm');
+    form.action = '/cliente/' + id; // rota DELETE
+});
+</script>
             </tr>
             @empty
             <tr>

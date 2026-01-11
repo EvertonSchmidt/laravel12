@@ -138,8 +138,27 @@
             </div>
           </div>
 
+        <div class="row">
+            <div class="col-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name="permissao" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Administrador</label>
+                </div>
+            </div>
+        </div>
 
 
+<style>
+    #flexSwitchCheckChecked{
+        height: 28px;
+        width: 60px;
+        /* margin:0 15px 0 0; */
+        margin: 20px 15px 0 -30px;
+    }
+    .form-check-label{
+        margin: 20px 0;
+    }
+</style>
           <hr class="my-4">
 
           <button class="w-100 btn btn-primary btn-lg" type="submit">Salvar</button>

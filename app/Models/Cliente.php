@@ -16,5 +16,7 @@ class Cliente extends Model
         'fone',
         'email',
         'nascimento',
+        'permissao',
+        'saldo',
     ];
 }

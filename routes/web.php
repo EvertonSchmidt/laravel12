@@ -31,3 +31,8 @@ Route::get('/editar-cliente/{cliente}', [ClienteController::class, 'editar'])->n
 
 //Rota para atualizar (O método é put)
 Route::put('/update-cliente/{cliente}', [ClienteController::class, 'update'])->name('cliente.update');
+
+
+//Deletar usuário
+Route::delete('/cliente/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
+

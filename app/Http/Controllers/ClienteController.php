@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
-use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -45,10 +43,26 @@ class ClienteController extends Controller
         $request->validated();
 
         //salva no banco de dados
-        Cliente::create($request->all());
+        // Cliente::create($request->all());
+
+        $saldo = str_replace(['R$', '.', ','], ['', '', '.'], $request->saldo);
+
+        //forçar 2 casas decimais após a virgula
+        $saldo = number_format((float) $saldo, "2", ".", "");
+
+        Cliente::create([
+            'nome' => $request->nome,
+            'cpf' => $request->cpf,
+            'fone' => $request->fone,
+            'email' => $request->email,
+            'nascimento' => $request->nascimento,
+            'permissao' => $request->has('permissao') ? 'Admin' : 'Comum',
+            // 'saldo' => $format_saldo
+            'saldo' => (float) $saldo,
+        ]);
 
         //redirecionamento
-        return redirect()->route('cliente.mostrar')->with('sucesso','Cadastro de <strong>'. $email .'</strong> efetuado com sucesso!');
+        return redirect()->route('cliente.index')->with('sucesso','Cadastro efetuado com sucesso!');
         //validar os campos (chatgpt)
         // $validated = $request->validate([
         //     'nome' => 'required|string|max:255',
@@ -70,12 +84,44 @@ class ClienteController extends Controller
     public function editar(Cliente $cliente)
     {
         return view('cliente/editar', ['cliente' => $cliente]);
+        // return view('partials/modal-login', ['cliente' => $cliente]);
     }
 
     //alterar os dados do cliente a partir do nosso ID
+    //Requeste verificaremos se os campos estão completos, ou seja, iremos validar
     public function update(ClienteRequest $request, Cliente $cliente)
     {
+        //validação dos campos
         $request->validated();
+
+        //edita as informações no banco de dados
+        $cliente->update([
+            'nome' => $request->nome,
+            'fone' => $request->fone,
+            'email' => $request->email,
+            'cpf' => $request->cpf,
+            'permissao' => $request->has('permissao') ? 'Admin' : 'Comum',
+        ]);
+
+        //redrecionamento
+        return redirect()->route('cliente.index')->with('sucesso', 'Cliente cadastrado com sucesso!');
+
+
+    }
+
+    public function destroy($id)
+    {
+        //busca o usuário pelo ID
+        $usuario = Cliente::findOrFail($id);
+
+        //Exclui o usuário
+        $usuario->delete();
+
+        //Redireciona com mensagem de sucesso
+        return redirect()
+    ->route('cliente.index')
+    ->with('sucesso', 'Usuário excluído com sucesso!');
+
 
     }
 }

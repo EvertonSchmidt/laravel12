@@ -91,10 +91,10 @@
 
       <div class="col-md-12 col-lg-12">
 
-        <form class="needs-validation" action="{{ route('cliente.update') }}" method="POST">
+        <form class="needs-validation" action="{{ route('cliente.update', ['cliente' => $cliente->id]) }}" method="POST">
             @csrf
             @method('PUT')
-            
+
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="nome" class="form-label">Nome Completo</label>
@@ -138,13 +138,25 @@
               Data de nacimento obrigatório
               </div>
             </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Gerente</label>
+            <div class="col-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name="permissao" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{ $cliente->permissao === 'Admin' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Administrador</label>
+                    <p class="position-paragrafo">Ao selecionar essa opção você a pessoa terá acesso total ao sistema, caso contrário terá acesso restrito</p>
+                </div>
             </div>
+
+
           </div>
 
 <style>
+    .position-paragrafo{
+        position: relative;
+        right: 25px;
+        font-size: 14px;
+        margin-top: -15px;
+        color: #c6c6c6;
+    }
     #flexSwitchCheckChecked{
         height: 28px;
         width: 60px;
